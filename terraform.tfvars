@@ -1,0 +1,5 @@
+aws_region    = "ap-southeast-2"
+ami_id        = "ami-0361bbf2b99f46c1d"
+instance_type = "t2.micro"
+vpc_cidr      = "10.0.0.0/16"
+vpc_name      = "sbs_main"

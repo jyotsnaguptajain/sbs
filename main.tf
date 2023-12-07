@@ -1,7 +1,7 @@
 module "my_vpc" {
   source     = "./modules/vpc"
-  cidr_block = "10.0.0.0/16"
-  vpc_name   = "sbs_main"
+  cidr_block = var.vpc_cidr
+  vpc_name   = var.vpc_name
 }
 
 #Three subnets will be created
@@ -37,7 +37,7 @@ module "my_alb" {
   vpc_id            = module.my_vpc.vpc_id
 }
 module "my_iam" {
-    source = "./modules/iam"
+  source = "./modules/iam"
 }
 module "my_asg" {
   source            = "./modules/asg"
@@ -46,7 +46,7 @@ module "my_asg" {
   ami_id            = var.ami_id
   instance_type     = var.instance_type
   target_group_arn  = module.my_alb.target_group_arn
-  iam_profile_name     = module.my_iam.iam_profile_name.name
+  iam_profile_name  = module.my_iam.iam_profile_name.name
 
-  depends_on = [ module.my_iam ]
+  depends_on = [module.my_iam]
 }
