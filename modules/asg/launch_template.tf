@@ -9,7 +9,7 @@ resource "aws_launch_template" "sbs_launch_template" {
     name = var.iam_profile_name
   }
 
-  user_data = filebase64("${path.module}/server.sh")
+  user_data = filebase64("${path.root}/server.sh")
 
   network_interfaces {
     associate_public_ip_address = true
